@@ -63,7 +63,7 @@ $(function() {
 				return d.Cause;
 			})
 			.entries(data);
-			//console.log(nestedData);
+			console.log(nestedData);
 
 			var root = d3.hierarchy({
 				values: nestedData
@@ -74,7 +74,7 @@ $(function() {
 			
 
 			partition(root);
-			console.log(root);
+			console.log(root.leaves());
 
 			/*rects = rects.data(root.descendants())
 				.enter().append('rect')
@@ -85,26 +85,6 @@ $(function() {
 				.attr('fill', function(d) { return color((d.children ? d:d.parent).data.key); })
 				.on('click', clicked);*/
 
-
-			/*d3.json(nestedData, function(error, root) {
-				//if (error) throw error;
-				console.log(root);
-				root = d3.hierarchy(d3.entries(root)[0], function(d) {
-					return d3.entries(d.value)
-				})
-					.sum(function(d) { return d.value; });
-
-				partition(root);
-
-				rects = rects.data(root.descendants())
-					.enter().append('rect')
-					.attr('x', function(d) { return d.x0; })
-					.attr('y', function(d) { return d.y0; })
-					.attr('width', function(d) {return d.x1 - d.x0; })
-					.attr('height', function(d) { return d.y1 - d.y0; })
-					.attr('fill', function(d) { return color((d.children ? d:d.parent).data.key); })
-					.on('click', clicked);
-			});*/
 
 
 
