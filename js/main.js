@@ -1,12 +1,12 @@
 $(function() {
 	var width = 960,
-		height = 500,
+		height = 700,
 		region = 'Africa Region';
 
 	var margin = {
 		left: 70,
 		bottom: 100,
-		top: 50,
+		top: 100,
 		right: 50,
 	};
 
@@ -27,6 +27,11 @@ $(function() {
 		.rangeRound([0, drawWidth])
 		.paddingInner(0.05)
 		.align(0.1);
+
+	svg.append('text')
+        .attr('transform', 'translate(' + (margin.left + drawWidth / 2) + ',' + (drawHeight + margin.top + 40) + ')')
+        .attr('class', 'title')
+        .text('Year');
 
 	var y = d3.scaleLinear()
 		.rangeRound([drawHeight, 0]);
@@ -111,6 +116,13 @@ $(function() {
 			y.domain([0, d3.max(data, function(d) {return d.total; })]).nice();
 			color.domain(keys);
 
+			svg.append('text')
+				.attr('transform', 'translate(' + (20 + drawWidth/4 ) + ',' + (margin.top - 40) + ')')
+				.attr('class', 'title')
+				.attr('font-size', 18)
+				.attr('font-weight', 'bold')
+				.text('Child Mortality Rate Caused by Prematurity in ' + region);
+
 			//console.log(data);
 			g.append('g')
 			 .selectAll('g')
@@ -124,7 +136,7 @@ $(function() {
 			 	.attr('y', function(d) { return y(d[1]); })
 			 	.attr('height', function(d) { return y(d[0]) - y(d[1]); })
 			 	.attr('width', x.bandwidth());
-			console.log(data);
+			//console.log(data);
 
 			g.append('g')
 				.attr('class', 'axis')
@@ -137,7 +149,32 @@ $(function() {
 			 .append('text')
 			 	.attr('x', 2)
 			 	.attr('y', y(y.ticks().pop()) + 0.5)
-			 	.attr('dy', '0.32em');
+			 	.attr('dy', '0.32em')
+			 	.attr('fill', '#000')
+			 	.attr('font-size', 11)
+			 	.attr('font-weight', 'bold')
+			 	.attr('text-anchor', 'start')
+			 	.text('Deaths per 1 000 live births');
+
+			var legend = g.append('g')
+				.attr('font-size', 10)
+				.attr('text-anchor', 'end')
+			  .selectAll('g')
+			  .data(keys.slice().reverse())
+			  .enter().append('g')
+			  	.attr('transform', function(d, i) { return 'translate(0,' + i*20 + ')'; });
+
+			legend.append('rect')
+				.attr('x', drawWidth - 19)
+				.attr('width', 20)
+				.attr('height', 20)
+				.attr('fill', color);
+
+			legend.append('text')
+				.attr('x', drawWidth - 24)
+				.attr('y', 9.5)
+				.attr('dy', '0.32em')
+				.text(function(d) {return d; });
 		}
 		
 
