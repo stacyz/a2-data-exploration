@@ -10,12 +10,48 @@
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.min.js"></script>-->
 	 <script src="http://d3js.org/d3.v4.min.js"></script>
 
-	<!--<link rel="stylesheet" href="css/main.css" />-->
+	<link rel="stylesheet" href="main.css" />
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 	<h1>Assignment 2 - Data Exploration</h1>
-	<section></section>
+	<p>
+		The webpage is intended to visually display child mortality rate cased by prematurity of the five WHO regions. Data used is available on <a href="http://apps.who.int/gho/data/view.main.CM2002015REG6-CH10?lang=en">WHO data repository</a>.
+	</p>
+	<p>
+		Interact with the following buttons to see child mortality rate in different regions:
+	</p>
+	<div class="btn-group" data-toggle="buttons">
+		<label class="btn btn-primary">
+		<input value="Africa Region" type="radio" autocomplete="off" checked>Africa Region
+		</label>
+		<label class="btn btn-primary">
+		<input value="Region of the Americas" type="radio" autocomplete="off">Region of the Americas
+		</label>
+		<label class="btn btn-primary">
+		<input value="South-East Asia Region" type="radio" autocomplete="off">South-East Asia Region
+		</label>
+		<label class="btn btn-primary">
+		<input value="European Region" type="radio" autocomplete="off">European Region
+		</label>
+		<label class="btn btn-primary">
+		<input value="Eastern Mediterranean Region" type="radio" autocomplete="off">Eastern Mediterranean Region
+		</label>
+		<label class="btn btn-primary">
+		<input value="Western Pacific Region" type="radio" autocomplete="off">Western Pacific Region
+		</label>
+		<label class="btn btn-primary">
+		<input value="World" type="radio" autocomplete="off">World
+		</label>
+	</div>
+
 	<div id="vis"></div>
+
+	<p>
+		The raw data was based on years for each region, which can be broken into lines of data for different years. Inside each line, there are three pieces of data representing child's age of 0-27 days, 1-59 months, and 0-4 years respectively. Since the data was based on years, showing the yearly trend of the child deaths rate is essential to deliver the appropriate information to the readers. The choice of stacked bar chart is because there are three different values needed to display for one year, and it is easier for readers to see the difference of the three values on a bar stacked bar chart than on a line graph. There is not a strong reasoning on the choice of color but since the topic is related to death, the colors chosen are cold colors instead of warm ones.
+	</p>
+	<p>
+		The buttons above the data visualization represent different WHO regions in the raw data. Readers can view the data of the region they are interested in by clicking on the button. The graph will change correspondingly.
+	</p>
 </body>
 </html>
